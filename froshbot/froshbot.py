@@ -1,20 +1,44 @@
-import cmath
+#include <stdio.h>
+#include <stdbool.h>
+#include <math.h>
 
-a = float(input("Enter the coefficient of x^2: "))
-b = float(input("Enter the coefficient of x: "))
-c = float(input("Enter the constant: "))
+bool is_armstrong_number(int number) {
+    // Count the number of digits in the given number
+    int originalNumber = number;
+    int numDigits = 0;
+    
+    while (number > 0) {
+        number /= 10;
+        numDigits++;
+    }
+    
+    // Calculate the sum of digits raised to the power of numDigits
+    number = originalNumber;
+    int sumOfPowers = 0;
+    
+    while (number > 0) {
+        int digit = number % 10;
+        sumOfPowers += pow(digit, numDigits);
+        number /= 10;
+    }
+    
+    // Check if the sum of powers is equal to the original number
+    return sumOfPowers == originalNumber;
+}
 
-disc = b**2 - 4*a*c
-
-root1 = (-b - cmath.sqrt(disc)) / (2*a)
-root2 = (-b + cmath.sqrt(disc)) / (2*a)
-
-if disc == 0 or disc > 0:
-    print(f"The roots are {root1} and {root2}")
-elif disc < 0:
-    Croot1 = cmath.sqrt(-disc) / (2*a)
-    Croot2 = cmath.sqrt(-disc) / (2*a)
-    Rroot1 = -b / (2*a)
-    Rroot2 = -b / (2*a)
-    print(f"The first root is {Rroot1} - i{Croot1}")
-    print(f"The second root is {Rroot2} + i{Croot2}")
+int main() {
+    int inputNumber;
+    printf("Enter a number: ");
+    
+    if (scanf("%d", &inputNumber) == 1) {
+        if (is_armstrong_number(inputNumber)) {
+            printf("%d is an Armstrong number.\n", inputNumber);
+        } else {
+            printf("%d is not an Armstrong number.\n", inputNumber);
+        }
+    } else {
+        printf("Invalid input. Please enter a valid number.\n");
+    }
+    
+    return 0;
+}
