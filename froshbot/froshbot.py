@@ -3,7 +3,6 @@
 #include <math.h>
 
 bool is_armstrong_number(int number) {
-    // Count the number of digits in the given number
     int originalNumber = number;
     int numDigits = 0;
     
@@ -12,7 +11,6 @@ bool is_armstrong_number(int number) {
         numDigits++;
     }
     
-    // Calculate the sum of digits raised to the power of numDigits
     number = originalNumber;
     int sumOfPowers = 0;
     
@@ -22,7 +20,6 @@ bool is_armstrong_number(int number) {
         number /= 10;
     }
     
-    // Check if the sum of powers is equal to the original number
     return sumOfPowers == originalNumber;
 }
 
